@@ -66,7 +66,7 @@
     <span class="live" id="live">·</span>
     <nav>
       <a href="#obzor">Обзор</a><a href="#proekty">Проекты</a><a href="#dinamika">Динамика</a>
-      <a href="#momentum">Моментум</a><a href="#celi">Цели</a><a href="#ozhidaniya">Ожидания</a><a href="#mind">Майндмэп</a>
+      <a href="#momentum">Моментум</a><a href="#celi">Цели</a><a href="#mind">Майндмэп</a>
     </nav>
   </div>
 </header>
@@ -80,7 +80,6 @@
   </section>
   <section id="momentum"><h2>Моментум</h2><div class="sub">последние 7 дней против предыдущих 7</div><div class="mom" id="mom"></div></section>
   <section id="celi"><h2>Цели на август</h2><div class="sub">кликни, чтобы раскрыть · тянутся из Notion</div><div id="goals"></div></section>
-  <section id="ozhidaniya"><h2>Ожидания</h2><div class="sub">мяч на чужой стороне — ждём от других</div><div class="wait" id="waiting"></div></section>
   <section id="mind"><h2>Майндмэп</h2><div class="sub">структура ФТБЛ</div><div id="mindmap"></div></section>
   <div class="footer">ФТБЛ · дашборд Александра · данные из Notion</div>
 </div>
@@ -168,9 +167,6 @@ function render(data){
     const openRows=(p.open||[]).map(o=>`<div class="gi"><span>○</span><span>${o}</span></div>`).join('');
     return `<div class="goal" style="border-left-color:${c.color}"><div class="ghead" onclick="const b=this.nextElementSibling;b.style.display=b.style.display==='block'?'none':'block';this.querySelector('.chev').style.transform=b.style.display==='block'?'rotate(90deg)':'rotate(0deg)'"><span class="chev">▶</span><span class="nm">${k}</span><span class="ct">${p.done} / ${p.total}</span></div><div class="gbody">${doneRows}${openRows}</div></div>`;
   }).join('');
-
-  // Ожидания
-  document.getElementById('waiting').innerHTML=(data.waiting||[]).map(w=>`<div class="wi"><i>▸</i><span>${w}</span></div>`).join('') || '<div class="wi">пусто</div>';
 
   drawMind();
 }
