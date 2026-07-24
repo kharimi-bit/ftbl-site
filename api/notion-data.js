@@ -8,10 +8,12 @@ const NOTION_VERSION = "2022-06-28";
 const PAGES = [
   { key: "Футбологика",      id: "37913f6d8cf381cc9c7fe3b4cdb6d053" },
   { key: "Сервер Джепаров",  id: "3a713f6d8cf3815aa830e5f553676389" },
-  { key: "Ивенты",           id: "37913f6d8cf381ecbc60e66acfdfe5e3" },
-  { key: "Global Sport Hub", id: "37913f6d8cf381b2980fcb3ebd91ddbb" },
+  { key: "Ивенты · GSH",     id: "37913f6d8cf381ecbc60e66acfdfe5e3" },
   { key: "CoSports",         id: "37913f6d8cf381ce9f3bd1127172d1f5" },
   { key: "Карьера",          id: "37d13f6d8cf381c89716fc76c3436cec" },
+  { key: "Овощебаза",        id: "3a713f6d8cf38161b550f018654a2a88" },
+  { key: "Финансы",          id: "37a13f6d8cf381af9cced6dc53e88366" },
+  { key: "Личное",           id: "8fc87d2201cd43e1b98733326c8e5584" },
 ];
 
 const GOAL_HEADING = "цель на август";
@@ -48,8 +50,10 @@ function blockText(b) {
 function parseProject(blocks) {
   let inGoal = false, done = 0, total = 0;
   const open = [];
+  const tasks = [];
   const activity = [];
   const dateRe = /(\d{2})\.(\d{2})\.(\d{4})/;
+  const pctRe = /[\s—·-]*(\d{1,3})\s*%\s*$/; // «— 40%» в конце текста задачи
 
   for (const b of blocks) {
     const t = b.type;
@@ -67,8 +71,13 @@ function parseProject(blocks) {
     if (inGoal && t === "divider") { inGoal = false; continue; }
     if (inGoal && t === "to_do") {
       total++;
-      if (b.to_do.checked) done++;
-      else open.push(plain(b.to_do.rich_text));
+      const checked = !!b.to_do.checked;
+      let label = plain(b.to_do.rich_text);
+      const m = label.match(pctRe);
+      let pct = checked ? 100 : (m ? Math.min(100, +m[1]) : 0);
+      if (m) label = label.replace(pctRe, "").trim();
+      if (checked) done++; else open.push(label);
+      tasks.push({ label, checked, pct });
       continue;
     }
     // журнальные записи иногда идут как параграфы
@@ -78,7 +87,7 @@ function parseProject(blocks) {
       if (m) activity.push(`${m[3]}-${m[2]}-${m[1]}`);
     }
   }
-  return { done, total, open, activity };
+  return { done, total, open, tasks, activity };
 }
 
 export default async function handler(req, res) {
