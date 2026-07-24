@@ -13,7 +13,6 @@ const PAGES = [
   { key: "CoSports",         id: "37913f6d8cf381ce9f3bd1127172d1f5" },
   { key: "Карьера",          id: "37d13f6d8cf381c89716fc76c3436cec" },
 ];
-const WAITING_PAGE = "37a13f6d8cf3818f8377d9ff08e45452"; // Ожидания
 
 const GOAL_HEADING = "цель на август";
 
@@ -82,22 +81,6 @@ function parseProject(blocks) {
   return { done, total, open, activity };
 }
 
-// «Ожидания»: собрать содержательные строки (мяч на чужой стороне)
-function parseWaiting(blocks) {
-  const items = [];
-  for (const b of blocks) {
-    const t = b.type;
-    if (!["paragraph", "bulleted_list_item", "numbered_list_item", "to_do"].includes(t)) continue;
-    let txt = blockText(b);
-    if (!txt) continue;
-    if (txt.startsWith("📝")) continue;          // это дата-заголовок записи
-    if (/^\d{2}\.\d{2}\.\d{4}/.test(txt)) continue;
-    if (txt.length < 8) continue;
-    items.push(txt.replace(/\s+/g, " ").slice(0, 160));
-  }
-  return items.slice(-10); // последние 10 актуальных
-}
-
 export default async function handler(req, res) {
   const token = process.env.NOTION_API_KEY;
   if (!token) { res.status(500).json({ error: "NOTION_API_KEY не задан в переменных Vercel" }); return; }
@@ -107,14 +90,10 @@ export default async function handler(req, res) {
       const blocks = await listBlocks(p.id, token);
       projects[p.key] = parseProject(blocks);
     }
-    const wBlocks = await listBlocks(WAITING_PAGE, token);
-    const waiting = parseWaiting(wBlocks);
-
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
     res.status(200).json({
       today: new Date().toISOString().slice(0, 10),
       projects,
-      waiting,
     });
   } catch (e) {
     res.status(500).json({ error: String(e && e.message || e) });
