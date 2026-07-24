@@ -8,13 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#17150f;--card:#211e17;--card2:#2a2620;--line:#3a352b;--text:#f3efe6;--muted:#b7ae9d;--dim:#8a8271;
-    --terra:#C75341;--sand:#D4A574;--green:#8fbf4b;--blue:#5aa0e0;--amber:#e0a23e;--violet:#b18cf0}
+  :root{--bg:#ffffff;--card:#fbf7f1;--card2:#efe7db;--line:#eadfd0;--text:#2b2320;--muted:#7d7062;--dim:#a99c8c;
+    --terra:#C75341;--sand:#D4A574;--green:#6f9b57;--blue:#4a86c4;--amber:#c0873a;--violet:#9a7fd4}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Comfortaa',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
-  header{position:sticky;top:0;z-index:10;background:rgba(23,21,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .htop{display:flex;align-items:center;gap:14px;padding:16px 20px;max-width:1000px;margin:0 auto;flex-wrap:wrap}
   .brand{font-weight:700;font-size:20px;letter-spacing:1px}.brand span{color:var(--terra)}
   .hdate{color:var(--muted);font-size:13px}
@@ -26,16 +26,16 @@
   h2{font-size:18px;font-weight:500;margin-bottom:4px}
   .sub{color:var(--dim);font-size:13px;margin-bottom:18px}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-  .kpi{background:var(--card);border-radius:14px;padding:16px 18px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
   .kpi .l{color:var(--muted);font-size:12px}.kpi .v{font-size:24px;font-weight:700;margin-top:6px}
   .kpi .v small{font-size:13px;font-weight:400;color:var(--dim)}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-  .pc{background:var(--card);border-radius:14px;padding:16px 18px;border-left:4px solid var(--line)}
+  .pc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;border-left:4px solid var(--line)}
   .pc h3{font-size:15px;font-weight:500;display:flex;align-items:center;gap:8px}
   .pc .badge{margin-left:auto;font-size:11px;padding:3px 10px;border-radius:12px}
   .pc .now{color:var(--dim);font-size:12px;margin-top:8px}
   .pc .prog{margin-top:12px;height:6px;background:var(--card2);border-radius:4px;overflow:hidden}
-  .pc .prog i{display:block;height:100%;background:var(--sand)}
+  .pc .prog i{display:block;height:100%;background:var(--terra)}
   .pc .pl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
   .hm{overflow-x:auto}.hmgrid{min-width:640px;display:grid;gap:2px;align-items:center}.hmc{height:20px;border-radius:2px}
   .lgd{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px}
@@ -46,12 +46,18 @@
   .bar{position:relative;height:20px;background:var(--card);border-radius:5px}
   .bar .mid{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
   .bar .fill{position:absolute;top:3px;bottom:3px;border-radius:3px}.bar .val{position:absolute;top:0;font-size:12px;line-height:20px}
-  .goal{background:var(--card);border-radius:12px;margin-bottom:10px;border-left:4px solid var(--line);overflow:hidden}
+  .goal{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;border-left:4px solid var(--line);overflow:hidden}
   .ghead{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer}
   .ghead .nm{font-weight:500;font-size:14px}.ghead .ct{margin-left:auto;font-size:12px;color:var(--muted)}
   .ghead .chev{transition:transform .15s;color:var(--dim)}
   .gbody{display:none;padding:2px 16px 14px 40px;border-top:1px solid var(--line)}
-  .gi{padding:7px 0;font-size:13px;display:flex;gap:9px;align-items:flex-start}.done{color:var(--green)}
+  .gitem{padding:9px 0;border-bottom:1px solid var(--line)}.gitem:last-child{border-bottom:none}
+  .gi{font-size:13px;display:flex;gap:9px;align-items:center}
+  .gic{color:var(--dim)}.gic.done{color:var(--terra)}.gl{flex:1}
+  .gpct{font-size:11px;color:var(--muted);width:36px;text-align:right}
+  .gbar{height:5px;background:var(--card2);border-radius:3px;overflow:hidden;margin:6px 0 0 24px}
+  .gbar i{display:block;height:100%;background:var(--terra)}
+  .done{color:var(--terra)}
   .wait{background:var(--card);border-radius:14px;padding:8px 18px;border-left:4px solid var(--violet)}
   .wi{padding:10px 0;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);display:flex;gap:10px}
   .wi:last-child{border-bottom:none}.wi i{color:var(--violet)}
@@ -76,24 +82,26 @@
   <section id="proekty"><h2>Проекты</h2><div class="sub">статус и прогресс к августовской цели</div><div class="cards" id="cards"></div></section>
   <section id="dinamika"><h2>Динамика</h2><div class="sub">активность по дням · 2 недели назад + 2 вперёд</div>
     <div class="hm"><div class="hmgrid" id="heatmap"></div></div>
-    <div class="lgd"><span><i class="sw" style="background:#5aa0e0"></i>сделано</span><span><i class="sw" style="background:#e0c07a"></i>запланировано</span><span><i class="sw" style="background:#e0a23e"></i>дедлайн</span><span><i class="sw" style="background:#2a2620;border:1px solid #3a352b"></i>пусто</span><span>пунктир = сегодня</span></div>
+    <div class="lgd"><span><i class="sw" style="background:#C75341"></i>сделано</span><span><i class="sw" style="background:#E6CBA5"></i>запланировано</span><span><i class="sw" style="background:#B8863F"></i>дедлайн</span><span><i class="sw" style="background:#efe9e0;border:1px solid #eadfd0"></i>пусто</span><span>пунктир = сегодня</span></div>
   </section>
   <section id="momentum"><h2>Моментум</h2><div class="sub">последние 7 дней против предыдущих 7</div><div class="mom" id="mom"></div></section>
   <section id="celi"><h2>Цели на август</h2><div class="sub">кликни, чтобы раскрыть · тянутся из Notion</div><div id="goals"></div></section>
-  <section id="mind"><h2>Майндмэп</h2><div class="sub">структура ФТБЛ</div><div id="mindmap"></div></section>
+  <section id="mind"><h2>Майндмэп</h2><div class="sub">Александр в центре, проекты вокруг</div><div id="mindmap" style="overflow-x:auto"></div></section>
   <div class="footer">ФТБЛ · дашборд Александра · данные из Notion</div>
 </div>
 
 <script>
 // ── презентационная конфигурация (цвета/статусы/план — не хранится в Notion) ──
 const CFG = {
-  "Футбологика":      {color:"#8fbf4b", badge:"приоритет", now:"доход 50к → цель 500к", plan:{}},
-  "Сервер Джепаров":  {color:"#e0a23e", badge:"дедлайн 11.08", now:"академия + партнёр ФК Октепа", plan:{}},
-  "Ивенты":           {color:"#e0a23e", badge:"дедлайн 01.08", now:"выезд ДФШ Нева идёт",
+  "Футбологика":      {color:"#6f9b57", badge:"приоритет", now:"доход 50к → цель 500к", plan:{}},
+  "Сервер Джепаров":  {color:"#c0873a", badge:"дедлайн 11.08", now:"академия + партнёр ФК Октепа", plan:{}},
+  "Ивенты · GSH":     {color:"#C75341", badge:"1 клиент на осень", now:"выезд Нева идёт · воронка лидов",
                         plan:{"2026-07-25":2,"2026-07-26":2,"2026-07-27":2,"2026-07-28":2,"2026-07-29":2,"2026-07-30":2,"2026-07-31":2,"2026-08-01":3}},
-  "Global Sport Hub": {color:"#5aa0e0", badge:"в работе", now:"сайт живой, продаж нет", plan:{}},
-  "CoSports":         {color:"#5aa0e0", badge:"в работе", now:"летний сезон закрыт", plan:{}},
-  "Карьера":          {color:"#5aa0e0", badge:"в работе", now:"кейс CoSports почти готов", plan:{}}
+  "CoSports":         {color:"#4a86c4", badge:"в работе", now:"летний сезон закрыт", plan:{}},
+  "Карьера":          {color:"#4a86c4", badge:"в работе", now:"кейс CoSports почти готов", plan:{}},
+  "Овощебаза":        {color:"#4f6b1f", badge:"прототип 03.08", now:"встреча с Володей 03.08", plan:{"2026-08-03":3}},
+  "Финансы":          {color:"#1f5a6b", badge:"ежедневно", now:"долги вниз · учёт", plan:{}},
+  "Личное":           {color:"#8a2f56", badge:"баланс жизни", now:"близкие · здоровье · любовь", plan:{}}
 };
 const ORDER = Object.keys(CFG);
 
@@ -101,51 +109,92 @@ const ORDER = Object.keys(CFG);
 const FALLBACK = {
   today:"2026-07-24",
   projects:{
-    "Футбологика":{done:0,total:3,open:["5 продаж по новой линейке","UZ-бот в боевую продажу — 3 ссылки оплаты","1 волна рассылки на 533 тёплых"],activity:["2026-07-11","2026-07-12","2026-07-16","2026-07-19","2026-07-24"]},
-    "Сервер Джепаров":{done:0,total:4,open:["Сайт + форма + бренд + флайеры к 11.08","Анонс и первый набор детей (11.08)","Поиск партнёров для ФК Октепа","Запуск Telegram-бота «Футбольная школа»"],activity:["2026-07-11","2026-07-16"]},
-    "Ивенты":{done:1,total:4,open:["Довести выезд без косяков до 01.08","Собрать отзыв/кейс от Невы","Найти 1 лид на осенний выезд"],activity:["2026-07-22","2026-07-24"]},
-    "Global Sport Hub":{done:0,total:2,open:["Запустить посты VK/TG → 10 заявок с сайта","Подписать меморандум (4 подписи)"],activity:["2026-07-11","2026-07-12","2026-07-13","2026-07-14"]},
-    "CoSports":{done:0,total:3,open:["Разработать большой сайт (MVP)","Внедрить задачник для команды (Telegram)","Плановая работа по партнёрам: условия + фикс-оплата"],activity:["2026-07-12","2026-07-13","2026-07-14","2026-07-19"]},
-    "Карьера":{done:0,total:2,open:["Оформить 3 кейса (CoSports, Футбологика, GSH)","2 публикации в LinkedIn"],activity:["2026-07-13"]}
-  },
-  waiting:["Вадим Зинин — маркетинг-план Global Sport Hub","Кукушкин — подписание договоров + аванс Футболовик","Ждём поступления денег от Казаха","Переговоры с KFC (в процессе)","Женя / CoSports — фиксированная оплата","Синьков — по багажу/билетам"]
+    "Футбологика":{tasks:[
+      {label:"10 продаж (150к) за август · 5/50к до июля",checked:false,pct:20},
+      {label:"UZ-бот в боевую продажу — 3 ссылки оплаты",checked:false,pct:60},
+      {label:"Волна на 533 тёплых + контент 2×/нед",checked:false,pct:0}
+    ],activity:["2026-07-11","2026-07-12","2026-07-16","2026-07-19","2026-07-24"]},
+    "Сервер Джепаров":{tasks:[
+      {label:"Сайт + форма + бренд + флайеры к 11.08",checked:false,pct:10},
+      {label:"Анонс и первый набор детей (11.08)",checked:false,pct:0},
+      {label:"Поиск партнёров для ФК Октепа",checked:false,pct:0},
+      {label:"Запуск Telegram-бота «Футбольная школа»",checked:false,pct:40}
+    ],activity:["2026-07-11","2026-07-16"]},
+    "Ивенты · GSH":{tasks:[
+      {label:"Встретить Нева, договор, комиссия 45к",checked:true,pct:100},
+      {label:"Довести выезд Невы до 01.08 + видео-отзыв",checked:false,pct:50},
+      {label:"Собрать реестр лидов, запустить воронку",checked:false,pct:0},
+      {label:"Линейка офферов в один документ",checked:false,pct:0},
+      {label:"Запустить посты VK/TG по базе",checked:false,pct:0},
+      {label:"1 клиент на осень — предоплата 300к",checked:false,pct:0}
+    ],activity:["2026-07-11","2026-07-12","2026-07-13","2026-07-14","2026-07-22","2026-07-24"]},
+    "CoSports":{tasks:[
+      {label:"Лендинг CoSports к 01.08 (регулярный формат)",checked:false,pct:15},
+      {label:"Показать партнёрам, собрать фидбэк",checked:false,pct:0},
+      {label:"Подготовить к сентябрьской оплате в Ташкенте",checked:false,pct:0}
+    ],activity:["2026-07-12","2026-07-13","2026-07-14","2026-07-19"]},
+    "Карьера":{tasks:[
+      {label:"Оформить 3 кейса (CoSports, Футбологика, GSH)",checked:false,pct:30},
+      {label:"2 публикации в LinkedIn",checked:false,pct:0}
+    ],activity:["2026-07-13"]},
+    "Овощебаза":{tasks:[
+      {label:"Выстроить бизнес-процесс из схемы",checked:false,pct:10},
+      {label:"Отправить наработки Володе (28.07)",checked:false,pct:0},
+      {label:"Прототип к встрече 03.08",checked:false,pct:0},
+      {label:"Доработать ТЗ под требования",checked:false,pct:0},
+      {label:"Согласовать объём и оплату/этап",checked:false,pct:0}
+    ],activity:[]},
+    "Финансы":{tasks:[
+      {label:"Ежедневный финансовый учёт (реестр)",checked:false,pct:50},
+      {label:"Гасить долги по плану «Лавина»",checked:false,pct:20},
+      {label:"Свести июль/август без расхождений",checked:false,pct:0}
+    ],activity:["2026-07-21","2026-07-24"]},
+    "Личное":{tasks:[
+      {label:"Здоровье — спорт и холод ежедневно",checked:false,pct:70},
+      {label:"Близкие — время с детьми и родителями, встречи",checked:false,pct:0},
+      {label:"Любовь — время с любимой, вечера вдвоём",checked:false,pct:60}
+    ],activity:["2026-07-24"]}
+  }
 };
 
 const iso = d => d.toISOString().slice(0,10);
 const addDays = (d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x;};
 const ddmm = s => s.slice(8,10)+"."+s.slice(5,7);
+const taskPct = x => x.checked?100:Math.max(0,Math.min(100,x.pct||0));
+const norm = p => (p&&p.tasks) ? p.tasks : [...Array((p&&p.done)||0).fill(0).map(()=>({label:'сделано',checked:true,pct:100})), ...((p&&p.open)||[]).map(o=>({label:o,checked:false,pct:0}))];
+const stat = p => {const t=norm(p),total=t.length,done=t.filter(x=>x.checked).length,sum=t.reduce((s,x)=>s+taskPct(x),0);return {t,total,done,pct:total?Math.round(sum/total):0,sum};};
 
 function render(data){
   const today = new Date(data.today+"T00:00:00");
   document.getElementById('hdate').textContent = new Intl.DateTimeFormat('ru',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(today)+" · Красная Поляна";
 
   // KPI
-  let gd=0,gt=0; ORDER.forEach(k=>{const p=data.projects[k]; if(p){gd+=p.done;gt+=p.total;}});
-  const kpis=[["Живых направлений","6","+ 3 на паузе"],["Прогресс месяца",`${gd}/${gt}`,gt?Math.round(gd/gt*100)+"%":"0%"],["Хард-дедлайн","11.08","анонс Академии"],["Доход Футбологики","50к","→ цель 500к"]];
+  let sSum=0,sCnt=0; ORDER.forEach(k=>{const s=stat(data.projects[k]); sSum+=s.sum; sCnt+=s.total;});
+  const monthPct=sCnt?Math.round(sSum/sCnt):0;
+  const kpis=[["Живых направлений","8","+ 3 на паузе"],["Прогресс месяца",`${monthPct}%`,"средний по задачам"],["Хард-дедлайн","11.08","анонс Академии"],["Доход Футбологики","50к","→ цель 500к"]];
   document.getElementById('kpis').innerHTML=kpis.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]} <small>${k[2]}</small></div></div>`).join('');
 
   // Карточки
   document.getElementById('cards').innerHTML=ORDER.map(k=>{
-    const p=data.projects[k]||{done:0,total:0}, c=CFG[k];
-    const pct=p.total?Math.round(p.done/p.total*100):0;
-    return `<div class="pc" style="border-left-color:${c.color}"><h3>${k}<span class="badge" style="background:${c.color}22;color:${c.color}">${c.badge}</span></h3><div class="now">${c.now}</div><div class="prog"><i style="width:${pct}%"></i></div><div class="pl"><span>цель августа</span><span>${p.done} / ${p.total}</span></div></div>`;
+    const s=stat(data.projects[k]), c=CFG[k];
+    return `<div class="pc" style="border-left-color:${c.color}"><h3>${k}<span class="badge" style="background:${c.color}22;color:${c.color}">${c.badge}</span></h3><div class="now">${c.now}</div><div class="prog"><i style="width:${s.pct}%"></i></div><div class="pl"><span>цель августа · ${s.pct}%</span><span>${s.done} / ${s.total}</span></div></div>`;
   }).join('');
 
   // Тепловая карта: 14 назад + 14 вперёд
   const N=28, todayIdx=14;
   const days=[]; for(let i=0;i<N;i++) days.push(iso(addDays(today,i-14)));
-  const fills={0:'#2a2620',1:'#5aa0e0',2:'#e0c07a',3:'#e0a23e'};
+  const fills={0:'#efe9e0',1:'#C75341',2:'#E6CBA5',3:'#B8863F'};
   const g=document.getElementById('heatmap'); g.style.gridTemplateColumns='150px repeat('+N+',1fr)';
   let h='<div></div>';
   days.forEach((d,i)=>{const show=(i%7===0||i===todayIdx); h+=`<div style="font-size:9px;color:#8a8271;text-align:center;white-space:nowrap">${show?ddmm(d):''}</div>`;});
   ORDER.forEach(k=>{
     const p=data.projects[k]||{activity:[]}, plan=CFG[k].plan||{};
     const act=new Set(p.activity||[]);
-    h+=`<div style="font-size:12px;color:#b7ae9d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${k}</div>`;
+    h+=`<div style="font-size:12px;color:#7d7062;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${k}</div>`;
     days.forEach((d,i)=>{
       let v=0;
       if(d<=data.today){ v=act.has(d)?1:0; } else { v=plan[d]||0; }
-      const bd=v===0?'border:1px solid #3a352b;':'', dv=i===todayIdx?'border-right:2px dashed #8a8271;':'';
+      const bd=v===0?'border:1px solid #eadfd0;':'', dv=i===todayIdx?'border-right:2px dashed #b0a596;':'';
       h+=`<div class="hmc" style="background:${fills[v]};${bd}${dv}"></div>`;
     });
   });
@@ -156,34 +205,37 @@ function render(data){
   const moms=ORDER.map(k=>{const p=data.projects[k]||{activity:[]}; return {k,v:win(p,-6,0)-win(p,-13,-7)};});
   const maxAbs=Math.max(4,...moms.map(m=>Math.abs(m.v)));
   document.getElementById('mom').innerHTML=moms.sort((a,b)=>b.v-a.v).map(m=>{
-    const v=m.v,pct=Math.round(Math.abs(v)/maxAbs*48),pos=v>=0,col=v===0?'#8a8271':(pos?'#8fbf4b':'#e2645a');
+    const v=m.v,pct=Math.round(Math.abs(v)/maxAbs*48),pos=v>=0,col=v===0?'#b0a596':(pos?'#6f9b57':'#C75341');
     return `<div class="momrow"><div class="nm">${m.k}</div><div class="bar"><div class="mid"></div><div class="fill" style="${pos?'left:50%':'right:50%'};width:${pct}%;background:${col}"></div><div class="val" style="${pos?'left':'right'}:calc(50% + ${pct}% + 6px);color:${col}">${v>0?'+':''}${v}</div></div></div>`;
   }).join('');
 
-  // Цели
+  // Цели — попроцентный трекер по каждой задаче
   document.getElementById('goals').innerHTML=ORDER.map(k=>{
-    const p=data.projects[k]||{done:0,total:0,open:[]}, c=CFG[k];
-    const doneRows=Array(p.done).fill('<div class="gi"><span class="done">✓</span><span class="done">сделано</span></div>').join('');
-    const openRows=(p.open||[]).map(o=>`<div class="gi"><span>○</span><span>${o}</span></div>`).join('');
-    return `<div class="goal" style="border-left-color:${c.color}"><div class="ghead" onclick="const b=this.nextElementSibling;b.style.display=b.style.display==='block'?'none':'block';this.querySelector('.chev').style.transform=b.style.display==='block'?'rotate(90deg)':'rotate(0deg)'"><span class="chev">▶</span><span class="nm">${k}</span><span class="ct">${p.done} / ${p.total}</span></div><div class="gbody">${doneRows}${openRows}</div></div>`;
+    const s=stat(data.projects[k]), c=CFG[k];
+    const rows=s.t.map(x=>{const pc=taskPct(x);return `<div class="gitem"><div class="gi"><span class="gic ${x.checked?'done':''}">${x.checked?'✓':'○'}</span><span class="gl">${x.label}</span><span class="gpct">${pc}%</span></div><div class="gbar"><i style="width:${pc}%"></i></div></div>`;}).join('');
+    return `<div class="goal" style="border-left-color:${c.color}"><div class="ghead" onclick="const b=this.nextElementSibling;b.style.display=b.style.display==='block'?'none':'block';this.querySelector('.chev').style.transform=b.style.display==='block'?'rotate(90deg)':'rotate(0deg)'"><span class="chev">▶</span><span class="nm">${k}</span><span class="ct">${s.pct}% · ${s.done}/${s.total}</span></div><div class="gbody">${rows}</div></div>`;
   }).join('');
 
   drawMind();
 }
 
 function drawMind(){
+  // радиальный вид: Александр в центре, проекты вокруг
   const nodes=[
-    {x:30,y:55,fill:'#2a3a18',fg:'#bfe07a',t:'Футбологика',s:'продажи · UZ-бот · рассылка'},
-    {x:30,y:205,fill:'#16283a',fg:'#8fc4ef',t:'CoSports',s:'сайт · задачник · партнёры'},
-    {x:30,y:355,fill:'#2a2340',fg:'#b9aef0',t:'Карьера · Портфолио',s:'3 кейса · LinkedIn'},
-    {x:530,y:55,fill:'#3a2e14',fg:'#e8c37a',t:'Ивенты',s:'Нева до 01.08 · осенний лид'},
-    {x:530,y:205,fill:'#3a1f16',fg:'#eaa08c',t:'Сервер Джепаров',s:'11.08 анонс · ФК Октепа · бот'},
-    {x:530,y:355,fill:'#123028',fg:'#7fd4b6',t:'Global Sport Hub',s:'посты → 10 заявок · меморандум'}
+    {cx:360,cy:60, fill:'#EAF0DE',fg:'#4a6b2f',t:'Футбологика',    s:'продажи · 150к'},
+    {cx:551,cy:119,fill:'#F6E3D5',fg:'#a33f26',t:'Ивенты · GSH',   s:'1 клиент осень'},
+    {cx:630,cy:260,fill:'#E4EDF5',fg:'#2f5a80',t:'CoSports',       s:'лендинг 01.08'},
+    {cx:551,cy:401,fill:'#F3E7CF',fg:'#8a5a1f',t:'Сервер Джепаров',s:'анонс 11.08'},
+    {cx:360,cy:460,fill:'#EEE7F3',fg:'#5a4470',t:'Карьера',        s:'3 кейса · LinkedIn'},
+    {cx:169,cy:401,fill:'#E6EFD6',fg:'#4f6b1f',t:'Овощебаза',      s:'прототип · Володя 03.08'},
+    {cx:90, cy:260,fill:'#DCEBEF',fg:'#1f5a6b',t:'Финансы',        s:'долги вниз · учёт'},
+    {cx:169,cy:119,fill:'#F6E1EA',fg:'#8a2f56',t:'Личное',         s:'близкие · здоровье · любовь'}
   ];
-  let s='<svg viewBox="0 0 720 470" width="100%" xmlns="http://www.w3.org/2000/svg"><g stroke="#4a4436" stroke-width="1.5" fill="none">';
-  nodes.forEach(n=>{s+=`<line x1="360" y1="232" x2="${n.x+80}" y2="${n.y+22}"/>`;});
-  s+='</g><rect x="280" y="200" width="160" height="64" rx="12" fill="#C75341"/><text x="360" y="228" text-anchor="middle" font-family="Comfortaa,sans-serif" font-size="15" font-weight="700" fill="#fff">Александр</text><text x="360" y="249" text-anchor="middle" font-family="Comfortaa,sans-serif" font-size="13" fill="#ffe4dd">ФТБЛ</text>';
-  nodes.forEach(n=>{s+=`<rect x="${n.x}" y="${n.y}" width="160" height="44" rx="10" fill="${n.fill}"/><text x="${n.x+80}" y="${n.y+27}" text-anchor="middle" font-family="Comfortaa,sans-serif" font-size="13" font-weight="500" fill="${n.fg}">${n.t}</text><text x="${n.x+80}" y="${n.y+59}" text-anchor="middle" font-family="Comfortaa,sans-serif" font-size="10" fill="#8a8271">${n.s}</text>`;});
+  let s='<svg viewBox="0 0 720 520" width="100%" style="min-width:560px" xmlns="http://www.w3.org/2000/svg" font-family="Comfortaa,sans-serif"><g stroke="#d8ccbc" stroke-width="1.5" fill="none">';
+  nodes.forEach(n=>{s+=`<line x1="360" y1="260" x2="${n.cx}" y2="${n.cy}"/>`;});
+  s+='</g>';
+  s+='<rect x="280" y="228" width="160" height="64" rx="14" fill="#C75341"/><text x="360" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Александр</text><text x="360" y="277" text-anchor="middle" font-size="13" fill="#ffe4dd">ФТБЛ</text>';
+  nodes.forEach(n=>{s+=`<rect x="${n.cx-76}" y="${n.cy-22}" width="152" height="44" rx="10" fill="${n.fill}"/><text x="${n.cx}" y="${n.cy}" text-anchor="middle" font-size="13" font-weight="500" fill="${n.fg}">${n.t}</text><text x="${n.cx}" y="${n.cy+15}" text-anchor="middle" font-size="10" fill="#a99c8c">${n.s}</text>`;});
   s+='</svg>';
   document.getElementById('mindmap').innerHTML=s;
 }
@@ -191,7 +243,7 @@ function drawMind(){
 fetch('/api/notion-data').then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>{
   if(d.error)throw 0;
   document.getElementById('live').textContent='● live';
-  document.getElementById('live').style.color='#8fbf4b';
+  document.getElementById('live').style.color='#6f9b57';
   render(d);
 }).catch(()=>{
   document.getElementById('live').textContent='○ демо';
