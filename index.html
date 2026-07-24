@@ -240,14 +240,15 @@ function drawMind(){
   document.getElementById('mindmap').innerHTML=s;
 }
 
+// мгновенно рисуем запасные данные — страница никогда не пустая
+render(FALLBACK);
+document.getElementById('live').textContent='○ загрузка…';
 fetch('/api/notion-data').then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>{
   if(d.error)throw 0;
-  document.getElementById('live').textContent='● live';
-  document.getElementById('live').style.color='#6f9b57';
   render(d);
+  const el=document.getElementById('live'); el.textContent='● live'; el.style.color='#6f9b57';
 }).catch(()=>{
   document.getElementById('live').textContent='○ демо';
-  render(FALLBACK);
 });
 </script>
 </body>
